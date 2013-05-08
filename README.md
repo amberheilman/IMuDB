@@ -1,4 +1,1 @@
-Info-637
-========
-
-IMuDb
+IMuDB is an online music-information database, like Wikipedia, but focused only on music. The site will provide users with an interface to query music info based on different parameters (artist, album, genre, release year), enter/edit discography information, interact with other users on the discussion board, play a music-trivia quiz game, and write music stories. The site will target music professionals, fans, music-industry administrators, and amateur musicians.
