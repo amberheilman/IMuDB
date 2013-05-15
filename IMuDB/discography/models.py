@@ -20,6 +20,9 @@ class Artist(models.Model):
         num_stars = models.IntegerField()
         user = models.ForeignKey(User)
 
+	def __unicode__(self):
+        	return u'%s' % (self.name)
+
 class Genre(models.Model):
         name = models.CharField(max_length=200, null=True)
         style = models.CharField(max_length=2000, null=True, blank=True)
@@ -28,6 +31,9 @@ class Genre(models.Model):
         critical_reactions = models.CharField(max_length=2000, null=True, blank=True)
         notable_artists = models.ManyToManyField(Artist, null=True, blank=True)
         user = models.ForeignKey(User)
+
+	def __unicode__(self):
+		return u'%s' % (self.name)
 
 class Album(models.Model):
         title = models.CharField(max_length=200)
@@ -38,9 +44,11 @@ class Album(models.Model):
         release_date = models.DateField(null=True, blank=True)
         num_stars = models.IntegerField()
         user = models.ForeignKey(User)
-        #will user get overwritten each time an entry is edited? How can I include this behavior in the model?
+        
+	def __unicode__(self):
+		return u'%s' % (self.title)
 
-class Credits(models.Model):
+class Credit(models.Model):
         album = models.OneToOneField(Album)
         exec_producer = models.CharField(max_length=200, null=True, blank=True)
         mastered_by = models.CharField(max_length=200, null=True, blank=True)
@@ -49,14 +57,25 @@ class Credits(models.Model):
         art_director = models.CharField(max_length=200, null=True, blank=True)
         photography = models.CharField(max_length=200, null=True, blank=True)
         user = models.ForeignKey(User)
+	
+	def __unicode__(self):
+        	return u'%s' % (self.album)
+
 
 class AwardOrg(models.Model):
 	name = models.CharField(max_length=200)
 
+	def __unicode__(self):
+        	return u'%s' % (self.name)
+
+
 class AwardCategory(models.Model):
 	name = models.CharField(max_length=200)
 	awardorg = models.ForeignKey(AwardOrg)
-	year = models.IntegerField()
+
+	def __unicode__(self):
+        	return u'%s' % (self.name)
+
 
 class Track(models.Model):
 	title = models.CharField(max_length=200)
@@ -67,13 +86,22 @@ class Track(models.Model):
 	num_stars = models.IntegerField()
 	user = models.ForeignKey(User)
 
+	def __unicode__(self):
+		return u'%s' % (self.title)
+
 
 class Award(models.Model):
 	album = models.ForeignKey(Album, null=True, blank=True)
 	track = models.ForeignKey(Track, null=True, blank=True)
 	artist = models.ForeignKey(Artist)
 	awardcategory = models.OneToOneField(AwardCategory)
+	awardorg = models.OneToOneField(AwardOrg)
+	year = models.IntegerField()
         user = models.ForeignKey(User)
+
+	def __unicode__(self):
+		return u'%s- %s: %s' % (self.artist, self.album, self.awardcategory)
+
 
 class ArtistForm(ModelForm):
         class Meta:
@@ -87,9 +115,9 @@ class AlbumForm(ModelForm):
         class Meta:
                 model = Album
                 
-class CreditsForm(ModelForm):
+class CreditForm(ModelForm):
         class Meta:
-                model = Credits
+                model = Credit
           
 class TrackForm(ModelForm):
         class Meta:
