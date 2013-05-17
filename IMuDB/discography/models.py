@@ -100,7 +100,7 @@ class Award(models.Model):
         user = models.ForeignKey(User)
 
 	def __unicode__(self):
-		return u'%s- %s: %s' % (self.artist, self.album, self.awardcategory)
+		return u'%s: %s, %s' % (self.artist, self.awardcategory, self.year)
 
 
 class ArtistForm(ModelForm):
