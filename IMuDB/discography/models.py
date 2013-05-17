@@ -18,7 +18,6 @@ class Artist(models.Model):
         name = models.CharField(max_length=200)
         country = models.CharField(max_length=3, choices=COUNTRY_CHOICES, null=True, blank=True)
         num_stars = models.IntegerField()
-        user = models.ForeignKey(User)
 
 	def __unicode__(self):
         	return u'%s' % (self.name)
@@ -30,7 +29,6 @@ class Genre(models.Model):
         origins = models.CharField(max_length=2000, null=True, blank=True)
         critical_reactions = models.CharField(max_length=2000, null=True, blank=True)
         notable_artists = models.ManyToManyField(Artist, null=True, blank=True)
-        user = models.ForeignKey(User)
 
 	def __unicode__(self):
 		return u'%s' % (self.name)
@@ -43,7 +41,6 @@ class Album(models.Model):
         explicit = models.BooleanField()
         release_date = models.DateField(null=True, blank=True)
         num_stars = models.IntegerField()
-        user = models.ForeignKey(User)
         
 	def __unicode__(self):
 		return u'%s' % (self.title)
@@ -56,7 +53,6 @@ class Credit(models.Model):
         creative_director = models.CharField(max_length=200, null=True, blank=True)
         art_director = models.CharField(max_length=200, null=True, blank=True)
         photography = models.CharField(max_length=200, null=True, blank=True)
-        user = models.ForeignKey(User)
 	
 	def __unicode__(self):
         	return u'%s' % (self.album)
@@ -84,7 +80,6 @@ class Track(models.Model):
 	length = models.DecimalField(max_digits=4, decimal_places=2, null=True, blank=True)
 	release_date = models.DateField(null=True, blank=True)
 	num_stars = models.IntegerField()
-	user = models.ForeignKey(User)
 
 	def __unicode__(self):
 		return u'%s' % (self.title)
@@ -97,7 +92,6 @@ class Award(models.Model):
 	awardcategory = models.OneToOneField(AwardCategory)
 	awardorg = models.OneToOneField(AwardOrg)
 	year = models.IntegerField()
-        user = models.ForeignKey(User)
 
 	def __unicode__(self):
 		return u'%s: %s, %s' % (self.artist, self.awardcategory, self.year)

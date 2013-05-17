@@ -83,6 +83,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    "/home/kernelklink/public_html/IMuDB_project/IMuDB/static",
 )
 
 # List of finder classes that know how to find static files in
@@ -120,9 +121,11 @@ WSGI_APPLICATION = 'IMuDB.wsgi.application'
 
 TEMPLATE_DIRS = (
 
+    
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    "/home/kernelklink/public_html/IMuDB_project/IMuDB/IMuDB/templates",
 )
 
 INSTALLED_APPS = (
