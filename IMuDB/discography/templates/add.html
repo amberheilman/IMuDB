@@ -26,9 +26,11 @@
   </nav>
 </header>
 <div class="main center">
-        <h2><em>IMuDB</em></h2><br>
-	New Users: register above</br>
-	Existing Users: login above</br>
+        <h3>Add Info</h3><br>
+        <form action= '.' method="post">{% csrf_token %}
+	{{ form.as_p }}
+	<input type="submit" value="Submit" />
+	</form>
 <footer class="center part clearfix">
   <ul class="social column3 mright">
     <li>Site Created by:</li>

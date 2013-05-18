@@ -42,7 +42,6 @@ def genre_detail(request, genre_id):
         if request.method == 'POST':
                 form = GenreForm(request.POST, instance=p)
                 if form.is_valid():
-			import pdb; pdb.set_trace()
                         form.save()
                         return HttpResponseRedirect('/discography/edit/thanks')
         else:
@@ -71,6 +70,64 @@ def award_detail(request, award_id):
                 form = AwardForm(instance=p)
         return render_to_response('edit.html', { 'award': p, 'form': form}, context_instance=RequestContext(request))
 
+def artist_add(request):
+	if request.method == 'POST':
+		f = ArtistForm(request.POST)
+        	f.save()
+		return HttpResponseRedirect('/discography/add/thanks/')
+	else:
+		f = ArtistForm()
+	return render(request, 'add.html', {'form' : f})
+
+def album_add(request):
+        if request.method == 'POST':
+                f = AlbumForm(request.POST)
+                f.save()
+                return HttpResponseRedirect('/discography/add/thanks/')
+        else:
+                f = AlbumForm()
+        return render(request, 'add.html', {'form' : f})
+
+def track_add(request):
+        if request.method == 'POST':
+                f = TrackForm(request.POST)
+                f.save()
+                return HttpResponseRedirect('/discography/add/thanks/')
+        else:
+                f = TrackForm()
+        return render(request, 'add.html', {'form' : f})
+
+def genre_add(request):
+        if request.method == 'POST':
+                f = GenreForm(request.POST)
+                f.save()
+                return HttpResponseRedirect('/discography/add/thanks/')
+        else:
+                f = GenreForm()
+        return render(request, 'add.html', {'form' : f})
+
+def credit_add(request):
+        if request.method == 'POST':
+                f = CreditForm(request.POST)
+                f.save()
+                return HttpResponseRedirect('/discography/add/thanks/')
+        else:
+                f = CreditForm()
+        return render(request, 'add.html', {'form' : f})
+
+def award_add(request):
+        if request.method == 'POST':
+                f = AwardForm(request.POST)
+                f.save()
+                return HttpResponseRedirect('/discography/add/thanks/')
+        else:
+                f = AwardForm()
+        return render(request, 'add.html', {'form' : f})
+
+
+
+def thanks_add(request):
+	return render(request, 'thanksadd.html', {"foo":"bar"})
 
 def thanks(request):
 	#artist = get_object_or_404(Artist, pk=artist_id)

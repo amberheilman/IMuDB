@@ -1,0 +1,53 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>IMuDB</title>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="{% static "discography/style.css" %}">
+</head>
+<body>
+<header class="center clearfix" id="navtop"> <a href="index.html" class="logo fleft"><img src="{% static "discography/logo.jpg" %}" height=150 width=150 alt="" /></a>
+  <nav class="fright">
+    <ul>
+      <li><a href="/accounts/register" class="navactive">Register</a></li>
+      <li><a href="/accounts/login">Login</a></li>
+    </ul>
+    <ul>
+      <li><a href="works.html">Search</a></li>
+      <li><a href="services.html">Add Info</a></li>
+    </ul>
+    <ul>
+      <li><a href="/discography/edit/track/1">Edit Info</a></li>
+      <li><a href="quiz.html">Quiz Game (coming soon)</a></li>
+    </ul>
+  </nav>
+</header>
+<div class="main center">
+        <h2>IMuDB</h2><br>
+        Welcome to IMuDB- the Internet Music Database.<br>
+        New Users: Please regsiter above.<br>
+        Existing Users: Please login above.<br>
+<footer class="center part clearfix">
+  <ul class="social column3 mright">
+    <li><a href="#">RSS</a></li>
+    <li><a href="#">Facebook</a></li>
+    <li><a href="#">Twitter</a></li>
+    <li><a href="#">Google+</a></li>
+    <li><a href="#">Flickr</a></li>
+  </ul>
+  <div class="up column3 mright"> <a href="#navtop" class="ir">Go up</a> </div>
+  <nav class="column3">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="works.html">Works</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+</footer>
+</body>
+</html>
