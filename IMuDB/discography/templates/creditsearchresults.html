@@ -16,7 +16,7 @@
       <li><a href="/accounts/login/" class="navactive">Login</a></li>
     </ul>
     <ul>
-      <li><a href="/discography/search/" class="navactive">Search/Add/Edit</a></li>
+      <li><a href="/discography/search/choice/" class="navactive">Search</a></li>
       <li><a href="/">Quiz Game (coming soon)</a></li>
     </ul>
     <ul>
@@ -26,11 +26,22 @@
   </nav>
 </header>
 <div class="main center">
-        <h3>Edit Info</h3><br>
-        <form action= '.' method="post">{% csrf_token %}
-	{{ form.as_p }}
-	<input type="submit" value="Submit" />
-	</form>
+        <h3>Search Results</h3>
+	<ul>
+	{% for record in results %}
+		<li><em>ALBUM:  {{ record.album }}</li>
+		<li><em>EXEC. PRODUCER:  </em> {{ record.exec_producer }}</li>
+	        <li><em>MASTERED BY:  </em> {{ record.mastered_by }}</li>
+                <li><em>MARKETING:  </em> {{ record.marketing }}</li>
+		<li><em>CREATIVE DIRECTOR:  </em> {{ record.creative_director }}</li>
+		<li><em>ART DIRECTOR:  </em> {{ record.art_director }} </li>
+		<li><em>PHOTOGRAPHY:  </em> {{ record.photography }} </li><br>
+		<a href="{% url 'edit_credit_detail' record.pk %}" class "navative">Edit Record</a></li>
+		<hr>
+        {% endfor %}
+	</ul><br>
+	<h4>Can't find what you're looking for? Would you like to add a Credit record?</h4>
+	<a href="/discography/add/credit/" class="navative">Add Credit</a>
 <footer class="center part clearfix">
   <ul class="social column3 mright">
     <li>Site Created by:</li>

@@ -1,8 +1,10 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render_to_response, render
-from discography.models import Artist, ArtistForm, Album, AlbumForm, Track, TrackForm, Genre, GenreForm, Award, AwardForm, Credit, CreditForm
+from discography.models import Artist, ArtistForm, Album, AlbumForm, Track, TrackForm, TrackSearchForm, Genre, GenreForm, Award, AwardForm, AwardSearchForm, Credit, CreditForm, CreditSearchForm, ArtistSearchForm, GenreSearchForm, AlbumSearchForm
 from django.template import RequestContext
 from django.core.urlresolvers import reverse
+from discography.forms import SearchChoiceForm
+from django.views.generic.edit import FormView
 
 def artist_detail(request, artist_id):
 	p = get_object_or_404(Artist, pk=artist_id)
@@ -123,6 +125,86 @@ def award_add(request):
         else:
                 f = AwardForm()
         return render(request, 'add.html', {'form' : f})
+
+class SearchChoiceView(FormView):
+	template_name = 'searchchoice.html'
+	form_class = SearchChoiceForm
+	#success_url = '/search/query/'
+
+	def form_valid(self, form):
+			if form.cleaned_data['choice'] == 'Art':
+				return HttpResponseRedirect('/discography/search/artist/')
+			if form.cleaned_data['choice'] == 'Alb':
+				return HttpResponseRedirect('/discography/search/album/')
+			if form.cleaned_data['choice'] == 'Gen':
+				return HttpResponseRedirect('/discography/search/genre/')
+			if form.cleaned_data['choice'] == 'Tra':
+				return HttpResponseRedirect('/discography/search/track/')
+			if form.cleaned_data['choice'] == 'Cre':
+				return HttpResponseRedirect('/discography/search/credit/')
+			if form.cleaned_data['choice'] == 'Awa':
+				return HttpResponseRedirect('/discography/search/award/')
+
+def search_artist(request):
+        if request.method == 'POST':
+                f = ArtistSearchForm(request.POST)
+		if f.is_valid():
+			q = Artist.objects.filter(name = f.cleaned_data['name'])
+                	return render(request, 'searchresults.html', {'results' : q})
+        else:
+                f = ArtistSearchForm()
+        return render(request, 'artistsearch.html', {'form' : f})
+
+def search_genre(request):
+        if request.method == 'POST':
+                f = GenreSearchForm(request.POST)
+                if f.is_valid():
+                        q = Genre.objects.filter(name = f.cleaned_data['name'])
+                        return render(request, 'genresearchresults.html', {'results' : q})
+        else:
+                f = GenreSearchForm()
+        return render(request, 'genresearch.html', {'form' : f})
+
+def search_album(request):
+        if request.method == 'POST':
+                f = AlbumSearchForm(request.POST)
+                if f.is_valid():
+                        q = Album.objects.filter(title = f.cleaned_data['title'])
+                        return render(request, 'albumsearchresults.html', {'results' : q})
+        else:
+                f = AlbumSearchForm()
+        return render(request, 'albumsearch.html', {'form' : f})
+
+def search_track(request):
+        if request.method == 'POST':
+                f = TrackSearchForm(request.POST)
+                if f.is_valid():
+                        q = Track.objects.filter(title = f.cleaned_data['title'])
+                        return render(request, 'tracksearchresults.html', {'results' : q})
+        else:
+                f = TrackSearchForm()
+        return render(request, 'tracksearch.html', {'form' : f})
+
+def search_credit(request):
+        if request.method == 'POST':
+                f = CreditSearchForm(request.POST)
+                if f.is_valid():
+                        q = Credit.objects.filter(album = f.cleaned_data['album'])
+                        return render(request, 'creditsearchresults.html', {'results' : q})
+        else:
+                f = CreditSearchForm()
+        return render(request, 'creditsearch.html', {'form' : f})
+
+def search_award(request):
+        if request.method == 'POST':
+                f = AwardSearchForm(request.POST)
+                if f.is_valid():
+                        q = Award.objects.filter(awardcategory = f.cleaned_data['awardcategory'])
+                        return render(request, 'awardsearchresults.html', {'results' : q})
+        else:
+                f = AwardSearchForm()
+        return render(request, 'awardsearch.html', {'form' : f})
+
 
 
 

@@ -16,8 +16,8 @@
       <li><a href="/accounts/login/" class="navactive">Login</a></li>
     </ul>
     <ul>
-      <li><a href="/discography/search/" class="navactive">Search/Add/Edit</a></li>
-      <li><a href="/">Quiz Game (coming soon)</a></li>
+      <li><a href="/discography/search/" class="navactive">Search/Add/Edit Info</a></li>
+      <li><a href="/">Quiz Game (comign soon)</a></li>
     </ul>
     <ul>
       <li><a href="/">News Platform (coming soon)</a></li>
@@ -26,8 +26,9 @@
   </nav>
 </header>
 <div class="main center">
-        <h3>Edit Info</h3><br>
-        <form action= '.' method="post">{% csrf_token %}
+        <h3>Search for Existing Track Record(s) </h3>
+        <h5>To Add/Edit a Track Record, First Search for Existing Match</h5>
+	<form action="." method="post">{% csrf_token %}
 	{{ form.as_p }}
 	<input type="submit" value="Submit" />
 	</form>

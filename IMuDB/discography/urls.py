@@ -1,9 +1,10 @@
 
 from django.conf.urls import patterns, url
-
 from discography import views
+from discography.views import SearchChoiceView
 
-urlpatterns = patterns('',
+
+urlpatterns = patterns('discography.view',
     url(r'^edit/artist/(?P<artist_id>\d+)/$', views.artist_detail, name="edit_artist_detail"),
     url(r'^edit/album/(?P<album_id>\d+)/$', views.album_detail, name="edit_album_detail"),
     url(r'^edit/track/(?P<track_id>\d+)/$', views.track_detail, name="edit_track_detail"),
@@ -17,6 +18,15 @@ urlpatterns = patterns('',
     url(r'^add/genre/$', views.genre_add, name="add_genre"),  
     url(r'^add/credit/$', views.credit_add, name="add_credit"),
     url(r'^add/award/$', views.award_add, name="add_award"),    
+
+    url(r'^search/choice/$', SearchChoiceView.as_view(), name = "search_choice"),   
+    url(r'^search/artist/$', views.search_artist, name="search_artist"),
+    url(r'^search/album/$', views.search_album, name="search_album"),
+    url(r'^search/genre/$', views.search_genre, name="search_genre"),
+    url(r'^search/track/$', views.search_track, name="search_track"),
+    url(r'^search/credit/$', views.search_credit, name="search_credit"),
+    url(r'^search/award/$', views.search_award, name="search_award"),
+    
  
     url(r'^add/thanks/$', views.thanks_add, name="thanks_add"), 
     url(r'^edit/thanks/$', views.thanks, name="thanks"),

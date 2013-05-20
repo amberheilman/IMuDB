@@ -16,7 +16,7 @@
       <li><a href="/accounts/login/" class="navactive">Login</a></li>
     </ul>
     <ul>
-      <li><a href="/discography/search/" class="navactive">Search/Add/Edit</a></li>
+      <li><a href="/discography/search/choice/" class="navactive">Search</a></li>
       <li><a href="/">Quiz Game (coming soon)</a></li>
     </ul>
     <ul>
@@ -26,11 +26,21 @@
   </nav>
 </header>
 <div class="main center">
-        <h3>Edit Info</h3><br>
-        <form action= '.' method="post">{% csrf_token %}
-	{{ form.as_p }}
-	<input type="submit" value="Submit" />
-	</form>
+        <h3>Search Results</h3>
+	<ul>
+	{% for record in results %}
+		<li><em>ALBUM:  {{ record.album }}</li>
+		<li><em>TRACK:  </em> {{ record.track }}</li>
+	        <li><em>ARTIST:  </em> {{ record.artist }}</li>
+                <li><em>AWARD CATEGORY:  </em> {{ record.awardcategory }}</li>
+		<li><em>AWARD ORGANIZATION:  </em> {{ record.awardorg }}</li>
+		<li><em>YEAR:  </em> {{ record.year }} </li><br>
+		<a href="{% url 'edit_award_detail' record.pk %}" class "navative">Edit Record</a></li>
+		<hr>
+        {% endfor %}
+	</ul><br>
+	<h4>Can't find what you're looking for? Would you like to add an Award record?</h4>
+	<a href="/discography/add/award/" class="navative">Add Award</a>
 <footer class="center part clearfix">
   <ul class="social column3 mright">
     <li>Site Created by:</li>

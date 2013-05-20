@@ -120,3 +120,34 @@ class TrackForm(ModelForm):
 class AwardForm(ModelForm):
 	class Meta:
 		model = Award
+
+class ArtistSearchForm(ModelForm):
+	class Meta:
+		model = Artist
+		exclude = ['country', 'num_stars']
+
+class AlbumSearchForm(ModelForm):
+	class Meta:
+		model = Album
+		exclude = ['artist', 'production_label', 'genre', 'explicit', 'release_date', 'num_stars']
+
+class GenreSearchForm(ModelForm):
+	class Meta:
+		model = Genre
+		exclude = ['style', 'time_period', 'origins', 'critical_reactions', 'notable_artists']
+
+class TrackSearchForm(ModelForm):
+	class Meta:
+		model = Track
+		exclude = ['album', 'artist', 'release_date', 'length', 'num_stars']
+
+class CreditSearchForm(ModelForm):
+	class Meta:
+		model = Credit
+		exclude = ['exec_producer', 'mastered_by', 'marketing', 'creative_director', 'art_director', 'photography']
+
+class AwardSearchForm(ModelForm):
+	class Meta:
+		model = Award
+		exclude = ['album', 'track', 'artist', 'awardorg', 'year']
+
