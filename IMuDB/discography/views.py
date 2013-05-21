@@ -7,124 +7,150 @@ from discography.forms import SearchChoiceForm
 from django.views.generic.edit import FormView
 
 def artist_detail(request, artist_id):
-	p = get_object_or_404(Artist, pk=artist_id)
-	if request.method == 'POST':
-		form = ArtistForm(request.POST, instance=p)
-		if form.is_valid():
-			form.save()
-			return HttpResponseRedirect('/discography/edit/thanks')
+	if request.user.is_authenticated():
+		p = get_object_or_404(Artist, pk=artist_id)
+		if request.method == 'POST':
+			form = ArtistForm(request.POST, instance=p)
+			if form.is_valid():
+				form.save()
+				return HttpResponseRedirect('/discography/edit/thanks')
+		else:
+        		form = ArtistForm(instance=p)
+    		return render_to_response('edit.html', { 'artist': p, 'form': form}, context_instance=RequestContext(request))
 	else:
-        	form = ArtistForm(instance=p)
-    	return render_to_response('edit.html', { 'artist': p, 'form': form}, context_instance=RequestContext(request))
-
+		return render(request, 'notauthenticated.html')
 def album_detail(request, album_id):
-        p = get_object_or_404(Album, pk=album_id)
-        if request.method == 'POST':
-                form = AlbumForm(request.POST, instance=p)
-                if form.is_valid():
-                        form.save()
-                        return HttpResponseRedirect('/discography/edit/thanks')
-        else:
-                form = AlbumForm(instance=p)
-        return render_to_response('edit.html', { 'album': p, 'form': form}, context_instance=RequestContext(request))
-
-def track_detail(request, track_id):
-        p = get_object_or_404(Track, pk=track_id)
-        if request.method == 'POST':
-                form = TrackForm(request.POST, instance=p)
-                if form.is_valid():
-                        form.save()
-                        return HttpResponseRedirect('/discography/edit/thanks')
-        else:
-                form = TrackForm(instance=p)
-        return render_to_response('edit.html', { 'track': p, 'form': form}, context_instance=RequestContext(request))
-
-def genre_detail(request, genre_id):
-        p = get_object_or_404(Genre, pk=genre_id)
-        if request.method == 'POST':
-                form = GenreForm(request.POST, instance=p)
-                if form.is_valid():
-                        form.save()
-                        return HttpResponseRedirect('/discography/edit/thanks')
-        else:
-                form = GenreForm(instance=p)
-        return render_to_response('edit.html', { 'genre': p, 'form': form}, context_instance=RequestContext(request))
-
-def credit_detail(request, credit_id):
-        p = get_object_or_404(Credit, pk=credit_id)
-        if request.method == 'POST':
-                form = CreditForm(request.POST, instance=p)
-                if form.is_valid():
-                        form.save()
-                        return HttpResponseRedirect('/discography/edit/thanks')
-        else:
-                form = CreditForm(instance=p)
-        return render_to_response('edit.html', { 'credit': p, 'form': form}, context_instance=RequestContext(request))
-
-def award_detail(request, award_id):
-        p = get_object_or_404(Award, pk=award_id)
-        if request.method == 'POST':
-                form = AwardForm(request.POST, instance=p)
-                if form.is_valid():
-                        form.save()
-                        return HttpResponseRedirect('/discography/edit/thanks')
-        else:
-                form = AwardForm(instance=p)
-        return render_to_response('edit.html', { 'award': p, 'form': form}, context_instance=RequestContext(request))
-
-def artist_add(request):
-	if request.method == 'POST':
-		f = ArtistForm(request.POST)
-        	f.save()
-		return HttpResponseRedirect('/discography/add/thanks/')
+	if request.user.is_authenticated():
+        	p = get_object_or_404(Album, pk=album_id)
+        	if request.method == 'POST':
+                	form = AlbumForm(request.POST, instance=p)
+                	if form.is_valid():
+                        	form.save()
+                        	return HttpResponseRedirect('/discography/edit/thanks')
+        	else:
+                	form = AlbumForm(instance=p)
+        	return render_to_response('edit.html', { 'album': p, 'form': form}, context_instance=RequestContext(request))
 	else:
-		f = ArtistForm()
-	return render(request, 'add.html', {'form' : f})
-
+		return render(request, 'notauthenticated.html')
+def track_detail(request, track_id):
+	if request.user.is_authenticated():
+		p = get_object_or_404(Track, pk=track_id)
+        	if request.method == 'POST':
+                	form = TrackForm(request.POST, instance=p)
+                	if form.is_valid():
+                        	form.save()
+                        	return HttpResponseRedirect('/discography/edit/thanks')
+        	else:
+                	form = TrackForm(instance=p)
+        	return render_to_response('edit.html', { 'track': p, 'form': form}, context_instance=RequestContext(request))
+	else:
+		return render(request, 'notauthenticated.html')
+def genre_detail(request, genre_id):
+	if request.user.is_authenticated():
+        	p = get_object_or_404(Genre, pk=genre_id)
+        	if request.method == 'POST':
+                	form = GenreForm(request.POST, instance=p)
+                	if form.is_valid():
+                        	form.save()
+                        	return HttpResponseRedirect('/discography/edit/thanks')
+        	else:
+                	form = GenreForm(instance=p)
+        	return render_to_response('edit.html', { 'genre': p, 'form': form}, context_instance=RequestContext(request))
+	else:
+		return render(request, 'notauthenticated.html')
+def credit_detail(request, credit_id):
+	if request.user.is_authenticated():
+        	p = get_object_or_404(Credit, pk=credit_id)
+        	if request.method == 'POST':
+                	form = CreditForm(request.POST, instance=p)
+                	if form.is_valid():
+                        	form.save()
+                        	return HttpResponseRedirect('/discography/edit/thanks')
+        	else:
+                	form = CreditForm(instance=p)
+        	return render_to_response('edit.html', { 'credit': p, 'form': form}, context_instance=RequestContext(request))
+	else:
+		return render(request, 'notauthenticated.html')
+def award_detail(request, award_id):
+	if request.user.is_authenticated():
+        	p = get_object_or_404(Award, pk=award_id)
+        	if request.method == 'POST':
+                	form = AwardForm(request.POST, instance=p)
+                	if form.is_valid():
+                        	form.save()
+                        	return HttpResponseRedirect('/discography/edit/thanks')
+        	else:
+                	form = AwardForm(instance=p)
+        	return render_to_response('edit.html', { 'award': p, 'form': form}, context_instance=RequestContext(request))
+	else:
+		return render(request, 'notauthenticated.html')
+def artist_add(request):
+	if request.user.is_authenticated():
+	
+		if request.method == 'POST':
+			f = ArtistForm(request.POST)
+        		f.save()
+			return HttpResponseRedirect('/discography/add/thanks/')
+		else:
+			f = ArtistForm()
+		return render(request, 'add.html', {'form' : f})
+	else:
+		return render(request, 'notauthenticated.html')
 def album_add(request):
-        if request.method == 'POST':
-                f = AlbumForm(request.POST)
-                f.save()
-                return HttpResponseRedirect('/discography/add/thanks/')
-        else:
-                f = AlbumForm()
-        return render(request, 'add.html', {'form' : f})
-
+	if request.user.is_authenticated():
+        	if request.method == 'POST':
+                	f = AlbumForm(request.POST)
+                	f.save()
+                	return HttpResponseRedirect('/discography/add/thanks/')
+        	else:
+                	f = AlbumForm()
+        	return render(request, 'add.html', {'form' : f})
+	else:
+		return render(request, 'notauthenticated.html')
 def track_add(request):
-        if request.method == 'POST':
-                f = TrackForm(request.POST)
-                f.save()
-                return HttpResponseRedirect('/discography/add/thanks/')
-        else:
-                f = TrackForm()
-        return render(request, 'add.html', {'form' : f})
-
+	if request.user.is_authenticated():
+		if request.method == 'POST':
+                	f = TrackForm(request.POST)
+                	f.save()
+                	return HttpResponseRedirect('/discography/add/thanks/')
+        	else:
+                	f = TrackForm()
+        	return render(request, 'add.html', {'form' : f})
+	else:
+		return render(request, 'notauthenticated.html')
 def genre_add(request):
-        if request.method == 'POST':
-                f = GenreForm(request.POST)
-                f.save()
-                return HttpResponseRedirect('/discography/add/thanks/')
-        else:
-                f = GenreForm()
-        return render(request, 'add.html', {'form' : f})
-
+	if request.user.is_authenticated():
+        	if request.method == 'POST':
+                	f = GenreForm(request.POST)
+                	f.save()
+                	return HttpResponseRedirect('/discography/add/thanks/')
+        	else:
+                	f = GenreForm()
+        	return render(request, 'add.html', {'form' : f})
+	else:
+		return render(request, 'notauthenticated.html')
 def credit_add(request):
-        if request.method == 'POST':
-                f = CreditForm(request.POST)
-                f.save()
-                return HttpResponseRedirect('/discography/add/thanks/')
-        else:
-                f = CreditForm()
-        return render(request, 'add.html', {'form' : f})
-
+	if request.user.is_authenticated():
+        	if request.method == 'POST':
+                	f = CreditForm(request.POST)
+                	f.save()
+                	return HttpResponseRedirect('/discography/add/thanks/')
+        	else:
+                	f = CreditForm()
+        	return render(request, 'add.html', {'form' : f})
+	else:
+		return render(request, 'notauthenticated.html')
 def award_add(request):
-        if request.method == 'POST':
-                f = AwardForm(request.POST)
-                f.save()
-                return HttpResponseRedirect('/discography/add/thanks/')
-        else:
-                f = AwardForm()
-        return render(request, 'add.html', {'form' : f})
+	if request.user.is_authenticated():
+        	if request.method == 'POST':
+                	f = AwardForm(request.POST)
+                	f.save()
+                	return HttpResponseRedirect('/discography/add/thanks/')
+        	else:
+                	f = AwardForm()
+        	return render(request, 'add.html', {'form' : f})
+	else:
+		return render(request, 'notauthenticated.html')
 
 class SearchChoiceView(FormView):
 	template_name = 'searchchoice.html'
