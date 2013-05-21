@@ -176,7 +176,7 @@ def search_artist(request):
                 f = ArtistSearchForm(request.POST)
 		if f.is_valid():
 			q = Artist.objects.filter(name = f.cleaned_data['name'])
-                	return render(request, 'searchresults.html', {'results' : q})
+                	return render(request, 'artistsearchresults.html', {'results' : q})
         else:
                 f = ArtistSearchForm()
         return render(request, 'artistsearch.html', {'form' : f})
@@ -239,4 +239,4 @@ def thanks_add(request):
 
 def thanks(request):
 	#artist = get_object_or_404(Artist, pk=artist_id)
-	return render(request, 'thanks.html', {"foo": "bar"})
+	return render(request, 'thanksedit.html', {"foo": "bar"})
