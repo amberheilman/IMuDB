@@ -29,13 +29,17 @@
         <h3>Search Results</h3>
 	<ul>
 	{% for record in results %}
-		<li><em>ALBUM TITLE:  {{ record.title }}</li>
-		<li><em>ARTIST:  </em> {{ record.artist }}</li>
-	        <li><em>GENRE:  </em> {{ record.genre }}</li>
-                <li><em>PRODUCTION_LABEL:  </em> {{ record.production_label }}</li>
-		<li><em>EXPLICIT:  </em> {{ record.explicit }}</li>
-		<li><em>RELEASE DATE:  </em> {{ record.release_date }} </li>
-		<li><em>USER STAR RATING:  </em> {{ record.num_stars }} </li><br>
+		<li><h6>ALBUM TITLE:  </h6>  {{ record.title }}</li>
+		<li><h6>ARTIST:  </h6> {% for artist in record.artist.all %} 
+		    <li> {{ artist }} </li>
+		{% endfor %} </li>
+	        <li><h6>GENRE:  </h6> {% for genre in record.genre.all %} 
+		    <li> {{ genre }} </li>
+		{% endfor %} </li>
+                <li><h6>PRODUCTION_LABEL:  </h6> {{ record.production_label }}</li>
+		<li><h6>EXPLICIT:  </h6> {{ record.explicit }}</li>
+		<li><h6>RELEASE DATE:  </h6> {{ record.release_date }} </li>
+		<li><h6>USER STAR RATING:  </h6> {{ record.num_stars }} </li><br>
 		<a href="{% url 'edit_album_detail' record.pk %}" class "navative">Edit Record</a></li>
 		<hr>
         {% endfor %}

@@ -29,12 +29,14 @@
         <h3>Search Results</h3>
 	<ul>
 	{% for record in results %}
-		<li><em>GENRE NAME:  {{ record.name }}</li>
-		<li><em>STYLE:  </em> {{ record.style }}</li>
-	        <li><em>TIME PERIOD:  </em> {{ record.time_period }}</li>
-                <li><em>ORIGINS:  </em> {{ record.origins }}</li>
-		<li><em>CRITIICAL REACTIONS:  </em> {{ record.critical_reactions }}</li>
-		<li><em>NOTABLE ARTISTS:  </em> {{ record.notable_artists }} </li><br>
+		<li><h6>GENRE NAME:</h6>  {{ record.name }}</li>
+		<li><h6>STYLE:  </h6> {{ record.style }}</li>
+	        <li><h6>TIME PERIOD:  </h6> {{ record.time_period }}</li>
+                <li><h6>ORIGINS:  </h6> {{ record.origins }}</li>
+		<li><h6>CRITIICAL REACTIONS:  </h6> {{ record.critical_reactions }}</li>
+		<li><h6>NOTABLE ARTISTS:  </h6> {% for artist in record.notable_artists.all %} 
+	           <li>{{ artist }}</li> 
+		{% endfor %} </li><br>
 		<a href="{% url 'edit_genre_detail' record.pk %}" class "navative">Edit Record</a></li>
 		<hr>
         {% endfor %}

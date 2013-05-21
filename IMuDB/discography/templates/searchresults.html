@@ -29,9 +29,9 @@
         <h3>Search Results</h3>
 	<ul>
 	{% for record in results %}
-		<li><em>ARTIST NAME:  {{ record.name }}</li>
-		<li><em>COUNTRY:  </em> {{ record.country }}</li>
-	        <li><em>USER STAR RATING:  </em> {{ record.num_stars }}</li><br>
+		<li><h6>ARTIST NAME:  </h6>{{ record.name }}</li>
+		<li><h6>COUNTRY:  </h6> {{ record.country }}</li>
+	        <li><h6>USER STAR RATING:  </h6> {{ record.num_stars }}</li><br>
 	        <a href="{% url 'edit_artist_detail' record.pk %}" class "navative">Edit record</a></li>
 		<hr>
         {% endfor %}

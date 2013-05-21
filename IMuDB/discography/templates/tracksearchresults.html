@@ -29,12 +29,12 @@
         <h3>Search Results</h3>
 	<ul>
 	{% for record in results %}
-		<li><em>TRACK TITLE:  {{ record.title }}</li>
-		<li><em>ALBUM:  </em> {{ record.album }}</li>
-	        <li><em>ARTIST:  </em> {{ record.artist }}</li>
-                <li><em>LENGTH:  </em> {{ record.length }}</li>
-		<li><em>RELEASE_DATE:  </em> {{ record.release_date }}</li>
-		<li><em>USER STAR RATING:  </em> {{ record.num_stars }} </li><br>
+		<li><h6>TRACK TITLE:  </h6>{{ record.title }}</li>
+		<li><h6>ALBUM:  </h6> {{ record.album }}</li>
+	        <li><h6>ARTIST:  </h6> {{ record.artist }}</li>
+                <li><h6>LENGTH:  </h6> {{ record.length }}</li>
+		<li><h6>RELEASE_DATE:  </h6> {{ record.release_date }}</li>
+		<li><h6>USER STAR RATING:  </h6> {{ record.num_stars }} </li><br>
 		<a href="{% url 'edit_track_detail' record.pk %}" class "navative">Edit Record</a></li>
 		<hr>
         {% endfor %}
