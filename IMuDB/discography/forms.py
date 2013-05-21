@@ -11,3 +11,8 @@ class SearchChoiceForm(forms.Form):
 	)
 	choice = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect())
 
+class CreditSearchForm(forms.Form):
+	album = forms.CharField(max_length=200)
+
+class AwardSearchForm(forms.Form):
+	awardcategory = forms.CharField(max_length=200)

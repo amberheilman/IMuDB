@@ -1,9 +1,9 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render_to_response, render
-from discography.models import Artist, ArtistForm, Album, AlbumForm, Track, TrackForm, TrackSearchForm, Genre, GenreForm, Award, AwardForm, AwardSearchForm, Credit, CreditForm, CreditSearchForm, ArtistSearchForm, GenreSearchForm, AlbumSearchForm
+from discography.models import Artist, ArtistForm, Album, AlbumForm, Track, TrackForm, TrackSearchForm, Genre, GenreForm, Award, AwardForm, Credit, CreditForm, ArtistSearchForm, GenreSearchForm, AlbumSearchForm
 from django.template import RequestContext
 from django.core.urlresolvers import reverse
-from discography.forms import SearchChoiceForm
+from discography.forms import SearchChoiceForm, CreditSearchForm, AwardSearchForm
 from django.views.generic.edit import FormView
 
 def artist_detail(request, artist_id):
@@ -215,7 +215,7 @@ def search_credit(request):
         if request.method == 'POST':
                 f = CreditSearchForm(request.POST)
                 if f.is_valid():
-                        q = Credit.objects.filter(album = f.cleaned_data['album'])
+                        q = Credit.objects.filter(album__title = f.cleaned_data['album'])
                         return render(request, 'creditsearchresults.html', {'results' : q})
         else:
                 f = CreditSearchForm()
@@ -225,7 +225,7 @@ def search_award(request):
         if request.method == 'POST':
                 f = AwardSearchForm(request.POST)
                 if f.is_valid():
-                        q = Award.objects.filter(awardcategory = f.cleaned_data['awardcategory'])
+                        q = Award.objects.filter(awardcategory__name = f.cleaned_data['awardcategory'])
                         return render(request, 'awardsearchresults.html', {'results' : q})
         else:
                 f = AwardSearchForm()

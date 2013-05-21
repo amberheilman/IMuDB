@@ -141,13 +141,3 @@ class TrackSearchForm(ModelForm):
 		model = Track
 		exclude = ['album', 'artist', 'release_date', 'length', 'num_stars']
 
-class CreditSearchForm(ModelForm):
-	class Meta:
-		model = Credit
-		exclude = ['exec_producer', 'mastered_by', 'marketing', 'creative_director', 'art_director', 'photography']
-
-class AwardSearchForm(ModelForm):
-	class Meta:
-		model = Award
-		exclude = ['album', 'track', 'artist', 'awardorg', 'year']
-
