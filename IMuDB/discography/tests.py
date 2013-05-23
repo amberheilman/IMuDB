@@ -6,11 +6,14 @@ Replace this with more appropriate tests for your application.
 """
 
 from django.test import TestCase
+from django.template import RequestContext
 
+class test_artist_detail(TestCase):
 
-class SimpleTest(TestCase):
-    def test_basic_addition(self):
-        """
-        Tests that 1 + 1 always equals 2.
-        """
-        self.assertEqual(1 + 1, 2)
+    def user_is_authenticated(self):
+        self.assertTrue(request.user.is_authenticated())
+
+    def method_is_POST(self):
+	self.assertTrue(request.method == POST)
+	
+
