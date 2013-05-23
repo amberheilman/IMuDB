@@ -6,6 +6,7 @@ Replace this with more appropriate tests for your application.
 """
 
 from django.test import TestCase
+<<<<<<< HEAD
 from django.test.client import Client
 from django.core.urlresolvers import reverse
 from discography.models import Artist, Album, Genre
@@ -124,4 +125,12 @@ class ThanksViewTests(TestCase):
 	
 		response = self.client.get(reverse("thanks"))
 
+class test_artist_detail(TestCase):
+
+    def user_is_authenticated(self):
+        self.assertTrue(request.user.is_authenticated())
+
+    def method_is_POST(self):
+	self.assertTrue(request.method == POST)
+	
 
