@@ -9,9 +9,10 @@ from django.test import TestCase
 <<<<<<< HEAD
 from django.test.client import Client
 from django.core.urlresolvers import reverse
-from discography.models import Artist, Album, Genre
+from discography.models import Artist, Album, Genre,Track
 from django.contrib.auth.models import User
 
+from django.contrib.auth import login
 def create_artist(name, country, num_stars):
     
     return Artist.objects.create(name=name, country=country, num_stars=num_stars)
@@ -25,6 +26,9 @@ class ArtistViewTests(TestCase):
 		user.is_staff = True
 		user.save()
 		self.assertEqual(User.objects.all().count(), 1)
+                 user1=User.objects.create_user('rachel','rbp45@drexel.edu','testing123')
+     self.client.login(username='rachel',password='testing123')
+
 	
 	def test_artist_detail_view_GET_request(self):
 
@@ -133,4 +137,36 @@ class test_artist_detail(TestCase):
     def method_is_POST(self):
 	self.assertTrue(request.method == POST)
 	
+class GenreTest(TestCase):
+    def setUp(self):
+ 
+     user=User.objects.create_user('rachel','rbp45@drexel.edu','testing123')
+     self.client.login(username='rachel',password='testing123')
+
+
+
+
+
+    def test_genre_addition(self):
+
+      response=self.client.post('/discography/add/genre/',{'name':'rock'})
+
+      self.assertEqual(response['Location'],'http://testserver/discography/add/thanks/')
+      self.assertEqual(response.status_code,302)
+
+
+
+    def test_track_addition(self):
+
+
+      response=self.client.post('/discography/add/artist/',{'name':'xz','num_stars':1})
+      response=self.client.post('/discography/add/album/',{'title':'Just living','artist.name':'xz'})
+
+
+      response=self.client.post('/discography/add/track/',{'title':'rock','album.title':'Just living','artist.name':'xz'})
+      self.assertEqual(response.status_code,302)
+      response=self.client.post('/discography/search/artist/',{'name':'xz'})
+
+      self.assertContains(response,'xz')
+
 
