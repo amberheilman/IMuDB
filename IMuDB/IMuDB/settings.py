@@ -36,10 +36,10 @@ DATABASES = {
 }
 ACCOUNT_ACTIVATION_DAYS = 7
 EMAIL_HOST = 'smtp.mandrillapp.com'
-EMAIL_PORT = 587
+EMAIL_PORT = 465
 EMAIL_HOST_USER = ENV['MANDRILL_USERNAME'
 EMAIL_HOST_PASSWORD = ENV['MANDRILL_APIKEY']
-EMAIL_USE_TLS = False
+EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAI= 'webmaster@localhost'
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
