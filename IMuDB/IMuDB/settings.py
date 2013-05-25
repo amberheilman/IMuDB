@@ -27,8 +27,8 @@ DATABASES = {
         #'PORT': '3306',                      # Set to empty string for default.        
 	'HOST':'ec2-54-227-255-156.compute-1.amazonaws.com',
 	'NAME':'d6p484al7lgisn',
-	'USER':'pnrebslcfiavso'
-	'PORT':'5432'
+	'USER':'pnrebslcfiavso',
+	'PORT':'5432',
 	'PASSWORD':'d7pWMpsjiGrAOsMlVMabZruyNb',
             
     }
