@@ -151,8 +151,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
-    'registration', #must install "sudo apt-get install python-django-registration" at the shell
-    'south',
+    'registration', 
     'django.contrib.humanize',
     'discography',  
     # Uncomment the next line to enable the admin:
