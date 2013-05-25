@@ -8,7 +8,7 @@ import os.path
 import sys
 PROJECT_DIR = os.path.dirname(__file__)
 PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, os.path.join(PROJECT_PATH, "IMuDB")
+sys.path.insert(0, os.path.join(PROJECT_PATH, "IMuDB"))
 ADMINS = (
     # ('Stephen W. Slaughter', 'steve2slaughter@gmail.com'),
 )
