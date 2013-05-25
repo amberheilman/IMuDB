@@ -37,9 +37,9 @@ DATABASES = {
 ACCOUNT_ACTIVATION_DAYS = 7
 EMAIL_HOST = 'smtp.mandrillapp.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = os.environ.get('MANDRILL_USERNAME')
-EMAIL_HOST_PASSWORD =os.environ.get('MANDRILL_APIKEY')
-EMAIL_USE_TLS = True
+EMAIL_HOST_USER = ENV['MANDRILL_USERNAME'
+EMAIL_HOST_PASSWORD = ENV['MANDRILL_APIKEY']
+EMAIL_USE_TLS = False
 DEFAULT_FROM_EMAI= 'webmaster@localhost'
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
