@@ -37,10 +37,10 @@ DATABASES = {
 ACCOUNT_ACTIVATION_DAYS = 7
 EMAIL_HOST = 'smtp.mandrillapp.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = os.environ.get('steve2slaughter@gmail.com')
-EMAIL_HOST_PASSWORD =os.environ.get('zxBRYy381BwKHH6XiQocrw')
+EMAIL_HOST_USER = os.environ.get('app15894688@heroku.com')
+EMAIL_HOST_PASSWORD =os.environ.get('PIEk92xv5NWJSY1kPz82sA')
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'steve2slaughter@gmail.com'
+DEFAULT_FROM_EMAI= 'zombie@imudb.com'
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
