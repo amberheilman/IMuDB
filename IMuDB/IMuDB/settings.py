@@ -40,8 +40,7 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = os.environ.get('MANDRILL_USERNAME')
 EMAIL_HOST_PASSWORD =os.environ.get('MANDRILL_APIKEY')
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAI= 'zombie@heroku.com'
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+DEFAULT_FROM_EMAI= 'webmaster@localhost'
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
@@ -157,6 +156,7 @@ INSTALLED_APPS = (
     'django.contrib.humanize',
     'discography',
     'gunicorn',
+    'mandrill',
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
