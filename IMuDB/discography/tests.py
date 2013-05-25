@@ -200,8 +200,20 @@ class TrackViewTest(TestCase):
      user=User.objects.create_user('rachel','rbp45@drexel.edu','testing123')
      self.client.login(username='rachel',password='testing123')
 
-
     def test_track_add_view_GET_request(self):
+     artist1 = Artist.objects.create(name="Black eyed peas",country="USA",num_stars=5)
+
+
+
+     genre = Genre.objects.create(name="R&B")
+
+
+     album1 = Album.objects.create(title="The Beginning", production_label="Interscope Records", explicit="false", release_date="2010-11-01", num_stars=5)
+
+     track = Track.objects.create(title="Just can't get enough",album=album1,artist=artist1,length=3.19,release_date="2010-11-01",num_stars=5)
+
+
+
 
      response=self.client.get(reverse("add_track"))
 
@@ -210,15 +222,56 @@ class TrackViewTest(TestCase):
 
     def test_track_add_view_POST_request(self):
 
+
+
      artist = Artist.objects.create(name="Black eyed peas",country="USA",num_stars=5)
      artist1=Artist.objects.all()[0]
 
-     response=self.client.post(reverse("edit_track_detail",args=(track1.id,)),data={'title':'The Time'})
 
+
+
+     genre = Genre.objects.create(name="R&B")
+
+
+     album = Album.objects.create(title="The Beginning", production_label="Interscope Records", explicit="false", release_date="2010-11-01", num_stars=5)
+
+
+     album1=Album.objects.all()[0]
+
+     response=self.client.post(reverse("add_track"),data={'title':'Just cant get enough','album':album1.id,'artist':artist1.id,'length':'3.19','release_date':'2011-02-01','num_stars':5})
      for template in response.templates:
+        self.assertEqual(template.name, 'thanksadd.html')
+
+
+
+    def track_detail_view_GET_request(self):
+
+        artist1 = Artist.objects.create(name="Black eyed peas",country="USA",num_stars=5)
+        album1 = Album.objects.create(title="The Beginning", production_label="Interscope Records", explicit="false", release_date="2010-11-01", num_stars=5)
+
+        track = Track.objects.create(title="Just can't get enough",album=album1,artist=artist1,length=3.19,release_date="2010-11-01",num_stars=5)
+
+        track1=Track.objects.all()[0]
+
+
+        response=self.client.get(reverse("edit_track_detail",args=(track1.id,)))
+        for template in response.templates:
+         self.assertEqual(template.name,'edit.html')
+
+        self.assertContains(response,'form')
+
+
+    def test_track_detail_view_POST_request(self):
+       artist1 = Artist.objects.create(name="Black eyed peas",country="USA",num_stars=5)
+
+       album1 = Album.objects.create(title="The Beginning", production_label="Interscope Records", explicit="false", release_date="2010-11-01", num_stars=5)
+
+       track = Track.objects.create(title="Just can't get enough",album=album1,artist=artist1,length=3.19,release_date="2010-11-01",num_stars=5)
+
+       track1=Track.objects.all()[0]
+
+       response=self.client.post(reverse("edit_track_detail",args=(track1.id,)),data={'title':'The Time'})
+
+       for template in response.templates:
          self.assertEqual(template.name,'thanks.html')
-
-
-
-
 
