@@ -1,7 +1,6 @@
 Django==1.5.1
 South==0.7.6
 ## FIXME: could not find svn URL in dependency_links for this package:
-distribute==0.6.24dev-r0
 django-registration==0.9b1
 python-dateutil==1.5
 virtualenv==1.9.1
