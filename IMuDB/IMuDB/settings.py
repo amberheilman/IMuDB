@@ -19,7 +19,18 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE':'django.db.backends.postgresql_psycopg2',
-	'NAME':'',                     
+	#'ENGINE':'django.db.backends.mysql',  # The following settings are not used with sqlite3:
+        #'NAME': 'IMuDB',
+        #'USER': 'root',
+        #'PASSWORD': 'password',
+        #'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+        #'PORT': '3306',                      # Set to empty string for default.        
+	'HOST':'ec2-54-227-255-156.compute-1.amazonaws.com',
+	'NAME':'d6p484al7lgisn',
+	'USER':'pnrebslcfiavso'
+	'PORT':'5432'
+	'PASSWORD':'d7pWMpsjiGrAOsMlVMabZruyNb',
+            
     }
 }
 ACCOUNT_ACTIVATION_DAYS = 7
