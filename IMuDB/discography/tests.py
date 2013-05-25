@@ -133,4 +133,92 @@ class test_artist_detail(TestCase):
     def method_is_POST(self):
 	self.assertTrue(request.method == POST)
 	
+def create_genre(name,style,time_period, origins,critical_reactions):
+  artist1 = Artist.objects.create(name="Black eyed peas",country="USA",num_stars=5)
+  genre = Genre.objects.create(name=name,style=style,time_period=time_period,origins=origins,critical_reactions=critical_reactions)
+  genre.notable_artists.add(artist1)
+  return genre
+
+class GenreViewTest(TestCase):
+
+    def setUp(self):
+
+     user=User.objects.create_user('rachel','rbp45@drexel.edu','testing123')
+     self.client.login(username='rachel',password='testing123')
+
+
+    def test_genre_add_view_GET_request(self):
+
+      response = self.client.get(reverse("add_genre"))
+      for template in response.templates:
+        self.assertEqual(template.name, 'add.html')
+
+
+    def test_genre_add_view_POST_request(self):
+
+
+      response = self.client.post(reverse("add_genre"), data={'name': 'R&B', 'style':'Jazz', 'time_period':'1940s-1950s','origins':'United States','critical_reactions':'Perfect'})
+      for template in response.templates:
+        self.assertEqual(template.name, 'thanksadd.html')
+
+
+
+      response=self.client.post('/discography/add/genre/',{'name':'rock'})
+
+      self.assertEqual(response['Location'],'http://testserver/discography/add/thanks/')
+      self.assertEqual(response.status_code,302)
+
+    def test_genre_detail_view_GET_request(self):
+       artist2 = Artist.objects.create(name="Louis Armstrong",country="USA",num_stars=5)
+
+       genre = Genre.objects.create(name='Jazz',style='null',time_period='null',origins='null',critical_reactions='Sensational')
+       genre.notable_artists.add(artist2)
+       response=self.client.get(reverse("edit_genre_detail",args=(genre.id,)))
+       for template in response.templates:
+         self.assertEqual(template.name,'edit.html')
+
+       self.assertContains(response,'form')
+
+
+
+    def test_genre_detail_view_POST_request(self):
+       artist2 = Artist.objects.create(name="Louis Armstrong",country="USA",num_stars=5)
+
+       genre = Genre.objects.create(name='Jazz',style='null',time_period='null',origins='null',critical_reactions='Sensational')
+       genre.notable_artists.add(artist2)
+       response=self.client.post(reverse("edit_genre_detail",args=(genre.id,)),data={'name':'Jazz','style':'Blues,Ragtime','time_period':'Early 1910s','origins':'New Orleans'})
+
+       for template in response.templates:
+         self.assertEqual(template.name,'thanks.html')
+
+
+class TrackViewTest(TestCase):
+
+
+    def setUp(self):
+
+     user=User.objects.create_user('rachel','rbp45@drexel.edu','testing123')
+     self.client.login(username='rachel',password='testing123')
+
+
+    def test_track_add_view_GET_request(self):
+
+     response=self.client.get(reverse("add_track"))
+
+     for template in response.templates:
+        self.assertEqual(template.name, 'add.html')
+
+    def test_track_add_view_POST_request(self):
+
+     artist = Artist.objects.create(name="Black eyed peas",country="USA",num_stars=5)
+     artist1=Artist.objects.all()[0]
+
+     response=self.client.post(reverse("edit_track_detail",args=(track1.id,)),data={'title':'The Time'})
+
+     for template in response.templates:
+         self.assertEqual(template.name,'thanks.html')
+
+
+
+
 
