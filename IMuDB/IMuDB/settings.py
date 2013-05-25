@@ -12,7 +12,7 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASES['default'} = dj_database_url.config(default='postgres://user:pass@localhost/dbname')
+DATABASES['default'] = dj_database_url.config(default='postgres://user:pass@localhost/IMuDB')
 
 
 DATABASES = {
