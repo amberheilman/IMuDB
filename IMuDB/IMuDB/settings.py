@@ -3,7 +3,7 @@
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
-
+import os
 import os.path
 PROJECT_DIR = os.path.dirname(__file__)
 ADMINS = (
