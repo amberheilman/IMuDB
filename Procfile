@@ -1,2 +1,2 @@
-web: gunicorn IMuDB.wsgi
+web: python IMuDB/manage.py collectstatic --noinput; bin/gunicorn_django --workers=4 --bind=0.0.0.0:$PORT IMuDB/settings.py 
 

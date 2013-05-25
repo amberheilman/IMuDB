@@ -6,6 +6,7 @@ TEMPLATE_DEBUG = DEBUG
 import os
 import os.path
 PROJECT_DIR = os.path.dirname(__file__)
+PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
 ADMINS = (
     # ('Stephen W. Slaughter', 'steve2slaughter@gmail.com'),
 )
@@ -83,7 +84,7 @@ LOGIN_REDIRECT_URL = '/'
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/var/www/example.com/static/"
-STATIC_ROOT = '/home/kernelklink/public_html/IMuDB_project/IMuDB/static/'
+STATIC_ROOT = os.path.join(PROJECT_PATH, 'staticfiles')
 
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
@@ -95,7 +96,7 @@ STATICFILES_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     #"/opt/git/IMuDB/IMuDB/static", 
-    "%s/../static" % str(PROJECT_DIR),
+    os.path.join(PROJECT_PATH, 'static'),
     #"/home/kernelklink/public_html/IMuDB_project/IMuDB/static",
 )
 
@@ -105,6 +106,7 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+    'compressor.finders.CompressorFinder',
 )
 
 # Make this unique, and don't share it with anybody.
@@ -153,7 +155,10 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'registration', 
     'django.contrib.humanize',
-    'discography',  
+    'discography',
+    'gunicorn',
+    'storages',
+    'compressor',  
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
