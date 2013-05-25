@@ -14,21 +14,16 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE':'django.db.backends.mysql',  # The following settings are not used with sqlite3:
-        'NAME': 'IMuDB',
-        'USER': 'root',
-        'PASSWORD': 'password',
-        'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-        'PORT': '3306',                      # Set to empty string for default.
+        'ENGINE':'django.db.backends.postgresql_psycopg2',                     
     }
 }
 ACCOUNT_ACTIVATION_DAYS = 7
-EMAIL_HOST = 'localhost'
-EMAIL_PORT = 1025
-EMAIL_HOST_USER = ''
-EMAIL_HOST_PASSWORD =''
-EMAIL_USE_TLS = False
-DEFAULT_FROM_EMAIL = 'sws26@imudb.cs.drexel.ed'
+EMAIL_HOST = 'smtp.mandrillapp.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = os.environ.get('steve2slaughter@gmail.com')
+EMAIL_HOST_PASSWORD =os.environ.get('zxBRYy381BwKHH6XiQocrw'
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'steve2slaughter@gmail.com'
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
