@@ -42,7 +42,7 @@ EMAIL_PORT = 465
 EMAIL_HOST_USER = os.environ.get('MANDRILL_USERNAME')
 EMAIL_HOST_PASSWORD = os.environ.get('MANDRILL_APIKEY')
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAI= 'webmaster@localhost'
+DEFAULT_FROM_EMAI= 'webmaster@imudb.com'
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
@@ -192,6 +192,6 @@ LOGGING = {
         },
     }
 }
-#
+
 import dj_database_url
-DATABASES['default'] = dj_database_url.config(default='postgres://pnrebslcfiavso:d7pWMpsjiGrAOsMlVMabZruyNb@ec2-54-227-255-156.compute-1.amazonaws.com:5432/d6p484al7lgisn')
+DATABASES['default'] = dj_database_url.config(default='DATABASE_URL')
