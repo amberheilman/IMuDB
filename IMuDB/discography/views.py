@@ -89,8 +89,9 @@ def artist_add(request):
 	
 		if request.method == 'POST':
 			f = ArtistForm(request.POST)
-        		f.save()
-			return HttpResponseRedirect('/discography/add/thanks/')
+			if f.is_valid():
+	        		f.save()
+				return HttpResponseRedirect('/discography/add/thanks/')
 		else:
 			f = ArtistForm()
 		return render(request, 'add.html', {'form' : f})
@@ -100,8 +101,9 @@ def album_add(request):
 	if request.user.is_authenticated():
         	if request.method == 'POST':
                 	f = AlbumForm(request.POST)
-                	f.save()
-                	return HttpResponseRedirect('/discography/add/thanks/')
+                	if f.is_valid():
+				f.save()
+                		return HttpResponseRedirect('/discography/add/thanks/')
         	else:
                 	f = AlbumForm()
         	return render(request, 'add.html', {'form' : f})
@@ -111,8 +113,9 @@ def track_add(request):
 	if request.user.is_authenticated():
 		if request.method == 'POST':
                 	f = TrackForm(request.POST)
-                	f.save()
-                	return HttpResponseRedirect('/discography/add/thanks/')
+                	if f.is_valid():
+				f.save()
+                		return HttpResponseRedirect('/discography/add/thanks/')
         	else:
                 	f = TrackForm()
         	return render(request, 'add.html', {'form' : f})
@@ -122,8 +125,9 @@ def genre_add(request):
 	if request.user.is_authenticated():
         	if request.method == 'POST':
                 	f = GenreForm(request.POST)
-                	f.save()
-                	return HttpResponseRedirect('/discography/add/thanks/')
+                	if f.is_valid():
+				f.save()
+                		return HttpResponseRedirect('/discography/add/thanks/')
         	else:
                 	f = GenreForm()
         	return render(request, 'add.html', {'form' : f})
@@ -133,8 +137,9 @@ def credit_add(request):
 	if request.user.is_authenticated():
         	if request.method == 'POST':
                 	f = CreditForm(request.POST)
-                	f.save()
-                	return HttpResponseRedirect('/discography/add/thanks/')
+                	if f.is_valid():
+				f.save()
+                		return HttpResponseRedirect('/discography/add/thanks/')
         	else:
                 	f = CreditForm()
         	return render(request, 'add.html', {'form' : f})
@@ -144,8 +149,9 @@ def award_add(request):
 	if request.user.is_authenticated():
         	if request.method == 'POST':
                 	f = AwardForm(request.POST)
-                	f.save()
-                	return HttpResponseRedirect('/discography/add/thanks/')
+                	if f.is_valid():
+				f.save()
+                		return HttpResponseRedirect('/discography/add/thanks/')
         	else:
                 	f = AwardForm()
         	return render(request, 'add.html', {'form' : f})
