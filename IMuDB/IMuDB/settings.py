@@ -21,18 +21,19 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE':'django.db.backends.postgresql_psycopg2',
-	#'ENGINE':'django.db.backends.mysql',  # The following settings are not used with sqlite3:
-        #'NAME': 'IMuDB',
-        #'USER': 'root',
-        #'PASSWORD': 'password',
-        #'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-        #'PORT': '3306',                      # Set to empty string for default.        
-	'HOST':'ec2-54-227-255-156.compute-1.amazonaws.com',
-	'NAME':'d6p484al7lgisn',
-	'USER':'pnrebslcfiavso',
-	'PORT':'5432',
-	'PASSWORD':'d7pWMpsjiGrAOsMlVMabZruyNb',
+        
+	'ENGINE':'django.db.backends.mysql',  # The following settings are not used with sqlite3:
+        'NAME': 'IMuDB',
+        'USER': 'root',
+        'PASSWORD': 'password',
+        'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+        'PORT': '3306',                      # Set to empty string for default.        
+	#'ENGINE':'django.db.backends.postgresql_psycopg2',
+	#'HOST':'ec2-54-227-255-156.compute-1.amazonaws.com',
+	#'NAME':'d6p484al7lgisn',
+	#'USER':'pnrebslcfiavso',
+	#'PORT':'5432',
+	#'PASSWORD':'d7pWMpsjiGrAOsMlVMabZruyNb',
             
     }
 }
@@ -193,8 +194,8 @@ LOGGING = {
     }
 }
 
-import dj_database_url
-DATABASES['default'] = dj_database_url.config()
+#import dj_database_url
+#DATABASES['default'] = dj_database_url.config()
 
 #Honor the 'X-Forwarded-Proto' header for request.is_secure()
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+#SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
