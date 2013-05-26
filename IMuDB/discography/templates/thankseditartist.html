@@ -13,7 +13,8 @@
   <nav class="fright">
     <ul>
       <li><a href="/accounts/register/" class="navactive">Register</a></li>
-      <li><a href="/accounts/login/" class="navactive">Login</a> | <a href="/accounts/logout/" class="navactive">Logout</a><</li>
+      <li><a href="/accounts/login/" class="navactive">Login</a> | 
+      <li><a href="/accounts/logoutt/" class="navactive">Logout</a></li>
     </ul>
     <ul>
       <li><a href="/discography/search/choice" class="navactive">Search/Add/Edit Info</a></li>
@@ -26,11 +27,7 @@
   </nav>
 </header>
 <div class="main center">
-        <h3>Add Info</h3><br>
-        <form action= '.' method="post">{% csrf_token %}
-	{{ form.as_p }}	
-	<input type="submit" value="Submit" />
-	</form>
+        <h3>The Artist Record Has Been Updated!</h3><br>
 <footer class="center part clearfix">
   <ul class="social column3 mright">
     <li>Site Created by:</li>

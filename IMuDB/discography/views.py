@@ -13,10 +13,10 @@ def artist_detail(request, artist_id):
 			form = ArtistForm(request.POST, instance=p)
 			if form.is_valid():
 				form.save()
-				return HttpResponseRedirect('/discography/edit/thanks')
+				return HttpResponseRedirect('/discography/edit/thanks/artist')
 		else:
         		form = ArtistForm(instance=p)
-    		return render_to_response('edit.html', { 'artist': p, 'form': form}, context_instance=RequestContext(request))
+    		return render_to_response('artistedit.html', { 'artist': p, 'form': form}, context_instance=RequestContext(request))
 	else:
 		return render(request, 'notauthenticated.html')
 def album_detail(request, album_id):
@@ -26,10 +26,10 @@ def album_detail(request, album_id):
                 	form = AlbumForm(request.POST, instance=p)
                 	if form.is_valid():
                         	form.save()
-                        	return HttpResponseRedirect('/discography/edit/thanks')
+                        	return HttpResponseRedirect('/discography/edit/thanks/album')
         	else:
                 	form = AlbumForm(instance=p)
-        	return render_to_response('edit.html', { 'album': p, 'form': form}, context_instance=RequestContext(request))
+        	return render_to_response('albumedit.html', { 'album': p, 'form': form}, context_instance=RequestContext(request))
 	else:
 		return render(request, 'notauthenticated.html')
 def track_detail(request, track_id):
@@ -39,10 +39,10 @@ def track_detail(request, track_id):
                 	form = TrackForm(request.POST, instance=p)
                 	if form.is_valid():
                         	form.save()
-                        	return HttpResponseRedirect('/discography/edit/thanks')
+                        	return HttpResponseRedirect('/discography/edit/thanks/track')
         	else:
                 	form = TrackForm(instance=p)
-        	return render_to_response('edit.html', { 'track': p, 'form': form}, context_instance=RequestContext(request))
+        	return render_to_response('trackedit.html', { 'track': p, 'form': form}, context_instance=RequestContext(request))
 	else:
 		return render(request, 'notauthenticated.html')
 def genre_detail(request, genre_id):
@@ -52,10 +52,10 @@ def genre_detail(request, genre_id):
                 	form = GenreForm(request.POST, instance=p)
                 	if form.is_valid():
                         	form.save()
-                        	return HttpResponseRedirect('/discography/edit/thanks')
+                        	return HttpResponseRedirect('/discography/edit/thanks/genre')
         	else:
                 	form = GenreForm(instance=p)
-        	return render_to_response('edit.html', { 'genre': p, 'form': form}, context_instance=RequestContext(request))
+        	return render_to_response('genreedit.html', { 'genre': p, 'form': form}, context_instance=RequestContext(request))
 	else:
 		return render(request, 'notauthenticated.html')
 def credit_detail(request, credit_id):
@@ -65,10 +65,10 @@ def credit_detail(request, credit_id):
                 	form = CreditForm(request.POST, instance=p)
                 	if form.is_valid():
                         	form.save()
-                        	return HttpResponseRedirect('/discography/edit/thanks')
+                        	return HttpResponseRedirect('/discography/edit/thanks/credit')
         	else:
                 	form = CreditForm(instance=p)
-        	return render_to_response('edit.html', { 'credit': p, 'form': form}, context_instance=RequestContext(request))
+        	return render_to_response('creditedit.html', { 'credit': p, 'form': form}, context_instance=RequestContext(request))
 	else:
 		return render(request, 'notauthenticated.html')
 def award_detail(request, award_id):
@@ -78,10 +78,10 @@ def award_detail(request, award_id):
                 	form = AwardForm(request.POST, instance=p)
                 	if form.is_valid():
                         	form.save()
-                        	return HttpResponseRedirect('/discography/edit/thanks')
+                        	return HttpResponseRedirect('/discography/edit/thanks/award')
         	else:
                 	form = AwardForm(instance=p)
-        	return render_to_response('edit.html', { 'award': p, 'form': form}, context_instance=RequestContext(request))
+        	return render_to_response('awardedit.html', { 'award': p, 'form': form}, context_instance=RequestContext(request))
 	else:
 		return render(request, 'notauthenticated.html')
 def artist_add(request):
@@ -243,6 +243,24 @@ def search_award(request):
 def thanks_add(request):
 	return render(request, 'thanksadd.html', {"foo":"bar"})
 
-def thanks(request):
-	#artist = get_object_or_404(Artist, pk=artist_id)
-	return render(request, 'thanksedit.html', {"foo": "bar"})
+def thanks_edit_artist(request):
+	return render(request, 'thankseditartist.html', {"foo": "bar"})
+
+def thanks_edit_album(request):
+        return render(request, 'thankseditalbum.html', {"foo": "bar"})
+
+def thanks_edit_track(request):
+        return render(request, 'thanksedittrack.html', {"foo": "bar"})
+
+def thanks_edit_genre(request):
+        return render(request, 'thankseditgenre.html', {"foo": "bar"})
+
+def thanks_edit_award(request):
+        return render(request, 'thankseditaward.html', {"foo": "bar"})
+
+def thanks_edit_credit(request):
+        return render(request, 'thankseditcredit.html', {"foo": "bar"})
+
+
+
+

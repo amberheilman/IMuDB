@@ -29,7 +29,16 @@ urlpatterns = patterns('discography.view',
     
  
     url(r'^add/thanks/$', views.thanks_add, name="thanks_add"), 
-    url(r'^edit/thanks/$', views.thanks, name="thanks"),
+    url(r'^edit/thanks/artist$', views.thanks_edit_artist, name="thanks_edit_artist"),
+    url(r'^edit/thanks/album$', views.thanks_edit_album, name="thanks_edit_album"),
+    url(r'^edit/thanks/genre$', views.thanks_edit_genre, name="thanks_edit_genre"),
+    url(r'^edit/thanks/award$', views.thanks_edit_award, name="thanks_edit_award"),
+    url(r'^edit/thanks/track$', views.thanks_edit_track, name="thanks_edit_track"),
+    url(r'^edit/thanks/credit$', views.thanks_edit_credit, name="thanks_edit_credit"),
+
+
+
+
    
 
 )

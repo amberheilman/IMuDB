@@ -13,10 +13,11 @@
   <nav class="fright">
     <ul>
       <li><a href="/accounts/register/" class="navactive">Register</a></li>
-      <li><a href="/accounts/login/" class="navactive">Login</a> | <a href="/accounts/logout/" class="navactive">Logout</a><</li>
+      <li><a href="/accounts/login/" class="navactive">Login</a> | 
+      <li><a href="/accounts/logout/" class="navactive">Logout</a></li>
     </ul>
     <ul>
-      <li><a href="/discography/search/choice" class="navactive">Search/Add/Edit Info</a></li>
+      <li><a href="/discography/search/choice" class="navactive">Search/Add/Edit</a></li>
       <li><a href="/">Quiz Game (coming soon)</a></li>
     </ul>
     <ul>
@@ -26,9 +27,13 @@
   </nav>
 </header>
 <div class="main center">
-        <h3>Add Info</h3><br>
+        <h3>Edit Info</h3><br>
         <form action= '.' method="post">{% csrf_token %}
-	{{ form.as_p }}	
+	{{ form.as_p }}
+	<ul>
+		<li><a href="{% url 'add_album'%}" class "navative">Add New Album</a></li>
+        <li><a href="{% url 'add_track'%}" class "navative">Add New Track</a></li>
+	</ul>
 	<input type="submit" value="Submit" />
 	</form>
 <footer class="center part clearfix">
