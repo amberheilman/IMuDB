@@ -36,11 +36,14 @@ DATABASES = {
 }
 ACCOUNT_ACTIVATION_DAYS = 7
 EMAIL_HOST = 'smtp.mandrillapp.com'
-EMAIL_PORT = 465
+EMAIL_PORT = 587
+DEFAULT_FROM_EMAIL= 'webmaster@imudb.com'
 EMAIL_HOST_USER = os.environ.get('MANDRILL_USERNAME')
 EMAIL_HOST_PASSWORD = os.environ.get('MANDRILL_APIKEY')
-EMAIL_USE_TLS = True
+EMAIL_USE_TLS = False
 DEFAULT_FROM_EMAI= 'webmaster@imudb.com'
+
+
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
